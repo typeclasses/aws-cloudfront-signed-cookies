@@ -119,6 +119,7 @@ createSignedCookies kpid key policy = do
     , ( "CloudFront-Key-Pair-Id" , coerce @KeyPairId @Text kpid )
     ]
 
+-- | Format a list of cookies as HTTP request headers.
 renderCookiesText :: CookiesText -> Text
 renderCookiesText =
   Text.unlines . map (\(k, v) -> "Cookie: " <> k <> "=" <> v)
