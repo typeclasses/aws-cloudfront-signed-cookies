@@ -57,7 +57,7 @@ module Network.AWS.CloudFront.SignedCookies
   , KeyPairId (..)
   , PrivateKey
 
-  -- * Micellaneous
+  -- * Miscellaneous
 
   -- ** Cookies
   , CookiesText
