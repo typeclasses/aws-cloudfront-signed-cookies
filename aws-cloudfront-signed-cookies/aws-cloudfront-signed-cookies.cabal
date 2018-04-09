@@ -1,5 +1,5 @@
 name: aws-cloudfront-signed-cookies
-version: 0.1.0.0
+version: 0.1.0.1
 
 synopsis: Generate signed cookies for AWS CloudFront
 category: Network, AWS, Cloud
