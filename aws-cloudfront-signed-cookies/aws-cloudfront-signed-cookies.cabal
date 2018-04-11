@@ -33,16 +33,20 @@ library
   exposed-modules:
       Network.AWS.CloudFront.SignedCookies
     , Network.AWS.CloudFront.SignedCookies.CLI
+    , Network.AWS.CloudFront.SignedCookies.CLI.Decode
+    , Network.AWS.CloudFront.SignedCookies.CLI.Sign
     , Network.AWS.CloudFront.SignedCookies.Crypto
     , Network.AWS.CloudFront.SignedCookies.Encoding
     , Network.AWS.CloudFront.SignedCookies.Policy
     , Network.AWS.CloudFront.SignedCookies.Types
 
   other-modules:
-      Network.AWS.CloudFront.SignedCookies.Crypto.Internal
+      Network.AWS.CloudFront.SignedCookies.CLI.Internal
+    , Network.AWS.CloudFront.SignedCookies.Crypto.Internal
 
   build-depends:
       aeson
+    , aeson-pretty
     , asn1-encoding
     , asn1-types
     , base >=4.7 && <5

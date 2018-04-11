@@ -46,17 +46,21 @@ You can see a very similar example in action in the `Network.AWS.CloudFront.Sign
 
 ## The executable
 
-You can also generate cookies using the command-line interface.
+You can also generate cookies using the command-line interface. It provides two commands:
+
+* `sign` - Given a private key and policy options, produces signed cookies and prints them as HTTP request headers.
+* `decode` - Decodes a `CloudFront-Policy` cookie and prints it in human-readable JSON format.
+
+### `sign`
 
 ```
-$ aws-cloudfront-signed-cookies --help
-Generator of signed cookies for AWS CloudFront
+$ aws-cloudfront-signed-cookies sign --help
+Generate signed cookies for AWS CloudFront
 
-Usage: aws-cloudfront-signed-cookies --pem-file ARG --key-pair-id ARG
-                                     --resource ARG --days ARG
+Usage: aws-cloudfront-signed-cookies sign --pem-file ARG --key-pair-id ARG
+                                          --resource ARG --days ARG
 
 Available options:
-  -h,--help                Show this help text
   --pem-file ARG           Location in the filesystem where a .pem file
                            containing an RSA secret key can be found
   --key-pair-id ARG        CloudFront key pair ID for the key pair that you are
@@ -64,14 +68,55 @@ Available options:
   --resource ARG           URL that the policy will grant access to, optionally
                            containing asterisks for wildcards
   --days ARG               Integer number of days until the policy expires
+  -h,--help                Show this help text
 ```
 
 Example usage:
 
 ```
-$ aws-cloudfront-signed-cookies                \
+$ aws-cloudfront-signed-cookies sign           \
     --pem-file pk-APKAIATXN3RCIOVT5WRQ.pem     \
     --key-pair-id APKAIATXN3RCIOVT5WRQ         \
     --resource "https://example.com/secrets/*" \
     --days 2
+```
+
+Output:
+
+```
+Cookie: CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9zZWNyZXRzLyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjM2NjQxMjV9fX1dfQ__
+Cookie: CloudFront-Signature=R17isgiJD36sb4kh4pNxqq5eFCx5Q~vC~QbQKMhi9BqyhLboLQfb3pCdPp-WSVYOn4wlOobqhgcwoX2vjCd3y8eiUtelX1~ddaDlPBkkdZA~5Imd2z-W1o3r0coKB1SE2SPFT7M1XgNvwOPanQoft1VLchfVPGaitFYMum4KS~GXffqQZzaVybKJ64KfFLLBPSobg8MmBhHvpO9DBiwKijmGhDip~6L3W7OcqGT8HdqAmWxjnTHInXpx7bbVotla6a~J6WB6xmtJrmQzMLdTUxAY6IbJ2PzMtTXKgdNzbByGHvImg9k3Q3fNBTim8l7Tds1zpwX9GsuPcFkPe9HZ1Q__
+Cookie: CloudFront-Key-Pair-Id=APKAIATXN3RCIOVT5WRQ
+```
+
+### `decode`
+
+```
+$ aws-cloudfront-signed-cookies decode --help
+Decode signed AWS CloudFront policy cookies
+
+Usage: aws-cloudfront-signed-cookies decode --policy-cookie ARG
+
+Available options:
+  --policy-cookie ARG      The value of a CloudFront-Policy cookie
+  -h,--help                Show this help text
+
+```
+
+Example usage:
+
+```
+$ aws-cloudfront-signed-cookies decode --policy-cookie eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9zZWNyZXRzLyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjM2NjQxMjV9fX1dfQ__
+{
+    "Statement": [
+        {
+            "Resource": "https://example.com/secrets/*",
+            "Condition": {
+                "DateLessThan": {
+                    "AWS:EpochTime": 1523664125
+                }
+            }
+        }
+    ]
+}
 ```

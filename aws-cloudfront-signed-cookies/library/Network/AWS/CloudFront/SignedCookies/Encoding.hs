@@ -2,6 +2,7 @@
 
 module Network.AWS.CloudFront.SignedCookies.Encoding
   ( base64Encode
+  , base64Decode
   ) where
 
 import Network.AWS.CloudFront.SignedCookies.Types
@@ -40,12 +41,29 @@ Excerpts from [Setting Signed Cookies Using a Custom Policy](https://docs.aws.am
 
 base64Encode :: ByteString -> Text
 base64Encode =
-  Text.map charSubstitution . Text.decodeUtf8 . Base64.encode
+  Text.map charEncode . Text.decodeUtf8 . Base64.encode
+  where
+    charEncode =
+      \case
+        '+' -> '-'
+        '=' -> '_'
+        '/' -> '~'
+        x   -> x
 
-charSubstitution :: Char -> Char
-charSubstitution =
-  \case
-    '+' -> '-'
-    '=' -> '_'
-    '/' -> '~'
-    x   -> x
+{- |
+
+The inverse of 'base64Encode'. Produces a 'Left' value with
+an error message if decoding fails.
+
+-}
+
+base64Decode :: Text -> Either String ByteString
+base64Decode =
+  Base64.decode . Text.encodeUtf8 . Text.map charDecode
+  where
+    charDecode =
+      \case
+        '-' -> '+'
+        '_' -> '='
+        '~' -> '/'
+        x   -> x

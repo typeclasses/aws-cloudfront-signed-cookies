@@ -62,6 +62,8 @@ module Network.AWS.CloudFront.SignedCookies
   -- ** Cookies
   , CookiesText
   , renderCookiesText
+  , PolicyCookie (..)
+  , SignatureCookie (..)
 
   -- ** Time
   , NominalDiffTime

@@ -9,6 +9,7 @@ module Network.AWS.CloudFront.SignedCookies.Types
 
   -- * Cookies
   , CookiesText, SetCookie, CookieDomain (..), CookiePath (..)
+  , PolicyCookie (..), SignatureCookie (..)
 
   -- * Time
   , NominalDiffTime, POSIXTime, Lifespan (..), StartTime (..), EndTime (..)
@@ -77,6 +78,12 @@ newtype CookieDomain = CookieDomain Text
 
 -- | Usually @"/"@
 newtype CookiePath = CookiePath Text
+
+-- | The value of a @CloudFront-Policy@ cookie.
+newtype PolicyCookie = PolicyCookie Text
+
+-- | The value of a @CloudFront-Signature@ cookie.
+newtype SignatureCookie = SignatureCookie Text
 
 {- |
 
