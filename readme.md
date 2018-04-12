@@ -6,6 +6,8 @@ One way to [serve private content through AWS CloudFront](https://docs.aws.amazo
 
 ## The library
 
+### Creating signed cookies
+
 Example usage:
 
 ```haskell
@@ -37,12 +39,18 @@ main = do
 The output should look something like this:
 
 ```haskell
-Cookie: CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc29...
-Cookie: CloudFront-Signature=wMN6V3Okxk7sdSPZeebMh-wo...
+Cookie: CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9zZWNyZXRzLyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjM2NjQxMjV9fX1dfQ__
+Cookie: CloudFront-Signature=R17isgiJD36sb4kh4pNxqq5eFCx5Q~vC~QbQKMhi9BqyhLboLQfb3pCdPp-WSVYOn4wlOobqhgcwoX2vjCd3y8eiUtelX1~ddaDlPBkkdZA~5Imd2z-W1o3r0coKB1SE2SPFT7M1XgNvwOPanQoft1VLchfVPGaitFYMum4KS~GXffqQZzaVybKJ64KfFLLBPSobg8MmBhHvpO9DBiwKijmGhDip~6L3W7OcqGT8HdqAmWxjnTHInXpx7bbVotla6a~J6WB6xmtJrmQzMLdTUxAY6IbJ2PzMtTXKgdNzbByGHvImg9k3Q3fNBTim8l7Tds1zpwX9GsuPcFkPe9HZ1Q__
 Cookie: CloudFront-Key-Pair-Id=APKAIATXN3RCIOVT5WRQ
 ```
 
-You can see a very similar example in action in the `Network.AWS.CloudFront.SignedCookies.CLI` module which defines the command-line interface.
+You can see a very similar example in action in the `Network.AWS.CloudFront.SignedCookies.CLI.Sign` module which defines the command-line interface for creating signed cookies.
+
+### Decoding policy cookies
+
+After you generate a policy cookie and send it to a client, you may later want to parse it back into a `Policy` value -- for example, to determine whether you need to send a new set of cookies to replace an expired policy.
+
+... todo!
 
 ## The executable
 

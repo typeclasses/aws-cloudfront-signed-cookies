@@ -15,6 +15,8 @@ module Network.AWS.CloudFront.SignedCookies.Policy
 
   -- * JSON representation
   , policyJSON
+  , jsonTextPolicyMaybe
+  , jsonValPolicyMaybe
 
   ) where
 
@@ -28,6 +30,15 @@ import Data.Semigroup ((<>))
 
 -- bytestring
 import qualified Data.ByteString.Lazy as LBS
+
+-- lens
+import Control.Lens ((&), (^.), (^?))
+
+-- lens-aeson
+import Data.Aeson.Lens (AsNumber (..), AsPrimitive (..), key, nth, _Array, _Object)
+
+-- text
+import qualified Data.Text.Encoding as Text
 
 -- time
 import Data.Time.Clock.POSIX (getPOSIXTime)
@@ -91,6 +102,58 @@ sourceIpValue =
 
 (.=) :: Text -> A.Value -> A.Object
 (.=) = Map.singleton
+
+jsonTextPolicyMaybe :: Text -> Maybe Policy
+jsonTextPolicyMaybe txt =
+  case (A.eitherDecode' . LBS.fromStrict . Text.encodeUtf8) txt of
+    Left _    -> Nothing
+    Right val -> jsonValPolicyMaybe val
+
+jsonValPolicyMaybe :: A.Value -> Maybe Policy
+jsonValPolicyMaybe val =
+  Policy
+    <$> jsonResourceMaybe      val
+    <*> (pure . jsonStart)     val
+    <*> jsonEndMaybe           val
+    <*> (pure . jsonIpAddress) val
+
+jsonResourceMaybe :: A.Value -> Maybe Resource
+jsonResourceMaybe val =
+  fmap Resource
+    (val ^? key "Statement"
+          . nth 0
+          . key "Resource"
+          . _String)
+
+jsonStart :: A.Value -> StartTime
+jsonStart val =
+  maybe StartImmediately (StartTime . fromInteger)
+    (val ^? key "Statement"
+          . nth 0
+          . key "Condition"
+          . key "DateGreaterThan"
+          . key "AWS:EpochTime"
+          . _Integer)
+
+jsonEndMaybe :: A.Value -> Maybe EndTime
+jsonEndMaybe val =
+  fmap (EndTime . fromInteger)
+    (val ^? key "Statement"
+          . nth 0
+          . key "Condition"
+          . key "DateLessThan"
+          . key "AWS:EpochTime"
+          . _Integer)
+
+jsonIpAddress :: A.Value -> IpAddress
+jsonIpAddress val =
+  maybe AnyIp IpAddress
+    (val ^? key "Statement"
+          . nth 0
+          . key "Condition"
+          . key "IpAddress"
+          . key "AWS:SourceIp"
+          . _String)
 
 {- |
 

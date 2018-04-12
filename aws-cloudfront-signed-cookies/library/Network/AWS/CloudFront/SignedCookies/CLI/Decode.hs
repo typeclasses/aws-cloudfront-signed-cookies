@@ -11,7 +11,7 @@ import Network.AWS.CloudFront.SignedCookies.CLI.Internal
 import Network.AWS.CloudFront.SignedCookies.Encoding
 
 -- aeson
-import qualified Data.Aeson as Aeson
+import qualified Data.Aeson as A
 
 -- aeson-pretty
 import Data.Aeson.Encode.Pretty (encodePrettyToTextBuilder)
@@ -56,13 +56,13 @@ mainOpts Opts{..} = do
       Right x -> pure x
 
   value <-
-    case Aeson.eitherDecode' (LBS.fromStrict bs) of
+    case A.eitherDecode' (LBS.fromStrict bs) of
       Left e  -> fail e
       Right x -> pure x
 
   let
     result :: LText.Text =
-      Text.toLazyText $ encodePrettyToTextBuilder @Aeson.Value value
+      Text.toLazyText $ encodePrettyToTextBuilder @A.Value value
 
   -- Print the JSON to stdout
   LText.putStr result

@@ -57,6 +57,11 @@ module Network.AWS.CloudFront.SignedCookies
   , KeyPairId (..)
   , PrivateKey
 
+  -- * Policy JSON
+  , policyJSON
+  , jsonTextPolicyMaybe
+  , jsonValPolicyMaybe
+
   -- * Miscellaneous
 
   -- ** Cookies

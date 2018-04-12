@@ -52,6 +52,7 @@ The filename downloaded from AWS looks like this:
 
 -}
 newtype PemFilePath = PemFilePath Text
+  deriving (Eq, Show)
 
 {- |
 
@@ -65,6 +66,7 @@ download, and looks like this:
 
 -}
 newtype KeyPairId = KeyPairId Text
+  deriving (Eq, Show)
 
 {- |
 
@@ -75,15 +77,19 @@ Examples:
 
 -}
 newtype CookieDomain = CookieDomain Text
+  deriving (Eq, Show)
 
 -- | Usually @"/"@
 newtype CookiePath = CookiePath Text
+  deriving (Eq, Show)
 
 -- | The value of a @CloudFront-Policy@ cookie.
 newtype PolicyCookie = PolicyCookie Text
+  deriving (Eq, Show)
 
 -- | The value of a @CloudFront-Signature@ cookie.
 newtype SignatureCookie = SignatureCookie Text
+  deriving (Eq, Show)
 
 {- |
 
@@ -97,18 +103,23 @@ Examples:
 
 -}
 newtype Resource = Resource Text
+  deriving (Eq, Show)
 
 -- | How long from now the credentials expire
 newtype Lifespan = Lifespan NominalDiffTime
+  deriving (Eq, Show)
 
 -- | The time at which credentials begin to take effect
 data StartTime = StartImmediately | StartTime POSIXTime
+  deriving (Eq, Show)
 
 -- | The time at which credentials expire
 newtype EndTime = EndTime POSIXTime
+  deriving (Eq, Show)
 
 -- | The IP address or address range of clients allowed to make requests
 data IpAddress = AnyIp | IpAddress Text
+  deriving (Eq, Show)
 
 {- |
 
@@ -130,3 +141,4 @@ data Policy =
     , policyIpAddress :: IpAddress
         -- ^ The IP address or address range of clients allowed to make requests
     }
+    deriving (Eq, Show)
