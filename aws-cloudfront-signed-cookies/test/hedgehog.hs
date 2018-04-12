@@ -49,7 +49,7 @@ prop_jsonPolicy_1 = withTests 1 $ property $
       (EndTime 1357034400)
       (IpAddress "192.0.2.0/24")
   in
-    jsonTextPolicyMaybe x === Just p
+    jsonTextPolicy x === Right p
 
 prop_jsonPolicy_2 :: Property
 prop_jsonPolicy_2 = withTests 1 $ property $
@@ -75,7 +75,7 @@ prop_jsonPolicy_2 = withTests 1 $ property $
       (EndTime 1357120800)
       (IpAddress "192.0.2.10/32")
   in
-    jsonTextPolicyMaybe x === Just p
+    jsonTextPolicy x === Right p
 
 prop_jsonPolicy_3 :: Property
 prop_jsonPolicy_3 = withTests 1 $ property $
@@ -91,4 +91,4 @@ prop_jsonPolicy_3 = withTests 1 $ property $
       |]
 
   in
-    jsonTextPolicyMaybe x === Nothing
+    jsonTextPolicy x === Left "Error in $: not enough input"

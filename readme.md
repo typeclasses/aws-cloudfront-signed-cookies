@@ -50,7 +50,12 @@ You can see a very similar example in action in the `Network.AWS.CloudFront.Sign
 
 After you generate a policy cookie and send it to a client, you may later want to parse it back into a `Policy` value -- for example, to determine whether you need to send a new set of cookies to replace an expired policy.
 
-... todo!
+Example in GHCi:
+
+```
+λ> cookiePolicy (PolicyCookie "eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9zZWNyZXRzLyoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjM2NjQxMjV9fX1dfQ__")
+Right (Policy {policyResource = Resource "https://example.com/secrets/*", policyStart = StartImmediately, policyEnd = EndTime 1523664125s, policyIpAddress = AnyIp})
+```
 
 ## The executable
 

@@ -59,8 +59,11 @@ module Network.AWS.CloudFront.SignedCookies
 
   -- * Policy JSON
   , policyJSON
-  , jsonTextPolicyMaybe
-  , jsonValPolicyMaybe
+  , jsonTextPolicy
+  , jsonValPolicy
+
+  -- * Reading cookies
+  , cookiePolicy
 
   -- * Miscellaneous
 
@@ -86,9 +89,16 @@ import Network.AWS.CloudFront.SignedCookies.Encoding
 import Network.AWS.CloudFront.SignedCookies.Policy
 import Network.AWS.CloudFront.SignedCookies.Types
 
+-- aeson
+import qualified Data.Aeson as A
+
 -- base
+import Control.Monad ((>=>))
 import Data.Coerce (coerce)
 import Data.Semigroup ((<>))
+
+-- bytestring
+import qualified Data.ByteString.Lazy as LBS
 
 -- text
 import qualified Data.Text as Text
@@ -130,3 +140,10 @@ createSignedCookies kpid key policy = do
 renderCookiesText :: CookiesText -> Text
 renderCookiesText =
   Text.unlines . map (\(k, v) -> "Cookie: " <> k <> "=" <> v)
+
+-- | Parse the text value of a @CloudFront-Policy@ cookie into a 'Policy'
+-- value, producing 'Left' with an error message if parsing fails.
+cookiePolicy :: PolicyCookie -> Either String Policy
+cookiePolicy =
+  (base64Decode . coerce @PolicyCookie @Text) >=>
+  (A.eitherDecode' . LBS.fromStrict) >=> jsonValPolicy

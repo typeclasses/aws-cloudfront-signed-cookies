@@ -15,8 +15,8 @@ module Network.AWS.CloudFront.SignedCookies.Policy
 
   -- * JSON representation
   , policyJSON
-  , jsonTextPolicyMaybe
-  , jsonValPolicyMaybe
+  , jsonTextPolicy
+  , jsonValPolicy
 
   ) where
 
@@ -26,6 +26,7 @@ import Network.AWS.CloudFront.SignedCookies.Types
 import qualified Data.Aeson as A
 
 -- base
+import Control.Monad ((>=>))
 import Data.Semigroup ((<>))
 
 -- bytestring
@@ -103,57 +104,60 @@ sourceIpValue =
 (.=) :: Text -> A.Value -> A.Object
 (.=) = Map.singleton
 
-jsonTextPolicyMaybe :: Text -> Maybe Policy
-jsonTextPolicyMaybe txt =
-  case (A.eitherDecode' . LBS.fromStrict . Text.encodeUtf8) txt of
-    Left _    -> Nothing
-    Right val -> jsonValPolicyMaybe val
+jsonTextPolicy :: Text -> Either String Policy
+jsonTextPolicy =
+  (A.eitherDecode' . LBS.fromStrict . Text.encodeUtf8) >=>
+  jsonValPolicy
 
-jsonValPolicyMaybe :: A.Value -> Maybe Policy
-jsonValPolicyMaybe val =
+jsonValPolicy :: A.Value -> Either String Policy
+jsonValPolicy val =
   Policy
-    <$> jsonResourceMaybe      val
-    <*> (pure . jsonStart)     val
-    <*> jsonEndMaybe           val
-    <*> (pure . jsonIpAddress) val
+    <$> jsonResource  val
+    <*> jsonStart     val
+    <*> jsonEnd       val
+    <*> jsonIpAddress val
 
-jsonResourceMaybe :: A.Value -> Maybe Resource
-jsonResourceMaybe val =
-  fmap Resource
-    (val ^? key "Statement"
-          . nth 0
-          . key "Resource"
-          . _String)
+jsonResource :: A.Value -> Either String Resource
+jsonResource val =
+  maybe (Left "Missing \"Resource\"") Right $
+    fmap Resource
+      (val ^? key "Statement"
+            . nth 0
+            . key "Resource"
+            . _String)
 
-jsonStart :: A.Value -> StartTime
+jsonStart :: A.Value -> Either String StartTime
 jsonStart val =
-  maybe StartImmediately (StartTime . fromInteger)
-    (val ^? key "Statement"
-          . nth 0
-          . key "Condition"
-          . key "DateGreaterThan"
-          . key "AWS:EpochTime"
-          . _Integer)
+  Right $
+    maybe StartImmediately (StartTime . fromInteger)
+      (val ^? key "Statement"
+            . nth 0
+            . key "Condition"
+            . key "DateGreaterThan"
+            . key "AWS:EpochTime"
+            . _Integer)
 
-jsonEndMaybe :: A.Value -> Maybe EndTime
-jsonEndMaybe val =
-  fmap (EndTime . fromInteger)
-    (val ^? key "Statement"
-          . nth 0
-          . key "Condition"
-          . key "DateLessThan"
-          . key "AWS:EpochTime"
-          . _Integer)
+jsonEnd :: A.Value -> Either String EndTime
+jsonEnd val =
+  maybe (Left "Missing \"DateLessThan\"") Right $
+    fmap (EndTime . fromInteger)
+      (val ^? key "Statement"
+            . nth 0
+            . key "Condition"
+            . key "DateLessThan"
+            . key "AWS:EpochTime"
+            . _Integer)
 
-jsonIpAddress :: A.Value -> IpAddress
+jsonIpAddress :: A.Value -> Either String IpAddress
 jsonIpAddress val =
-  maybe AnyIp IpAddress
-    (val ^? key "Statement"
-          . nth 0
-          . key "Condition"
-          . key "IpAddress"
-          . key "AWS:SourceIp"
-          . _String)
+  Right $
+    maybe AnyIp IpAddress
+      (val ^? key "Statement"
+            . nth 0
+            . key "Condition"
+            . key "IpAddress"
+            . key "AWS:SourceIp"
+            . _String)
 
 {- |
 
