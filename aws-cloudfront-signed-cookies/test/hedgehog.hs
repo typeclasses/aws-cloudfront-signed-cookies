@@ -6,6 +6,7 @@ import Network.AWS.CloudFront.SignedCookies
 
 -- base
 import Control.Monad (unless)
+import Data.Either (isLeft)
 import Data.Foldable (for_)
 import qualified System.Exit as Exit
 import qualified System.IO   as IO
@@ -91,4 +92,4 @@ prop_jsonPolicy_3 = withTests 1 $ property $
       |]
 
   in
-    jsonTextPolicy x === Left "Error in $: not enough input"
+    assert (isLeft (jsonTextPolicy x))
