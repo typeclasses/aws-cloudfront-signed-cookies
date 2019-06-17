@@ -1,4 +1,4 @@
-resolver: lts-13.9
+resolver: lts-13.25
 
 packages:
   - aws-cloudfront-signed-cookies
