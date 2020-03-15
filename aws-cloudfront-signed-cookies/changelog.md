@@ -8,3 +8,8 @@
 
 - Relaxed a test case to accommodate a change
   in the error message output from Aeson.
+
+## 0.2.0.2 - 2020-03-15
+
+- Add a lower bound on the time library because
+  we require at least version 1.8.
