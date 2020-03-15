@@ -13,3 +13,8 @@
 
 - Add a lower bound on the time library because
   we require at least version 1.8.
+
+## 0.2.0.4 - 2020-03-15
+
+- Add a lower bound on base 4.9
+
