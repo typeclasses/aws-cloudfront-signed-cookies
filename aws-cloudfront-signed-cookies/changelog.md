@@ -18,3 +18,7 @@
 
 - Add a lower bound on base 4.9
 
+## 0.2.0.6 - 2020-05-18
+
+- Support GHC 8.10
+
