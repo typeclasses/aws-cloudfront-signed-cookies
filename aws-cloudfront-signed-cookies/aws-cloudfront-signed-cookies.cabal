@@ -1,5 +1,5 @@
 name: aws-cloudfront-signed-cookies
-version: 0.2.0.4
+version: 0.2.0.6
 
 synopsis: Generate signed cookies for AWS CloudFront
 category: Network, AWS, Cloud
@@ -19,7 +19,7 @@ license-file: license.txt
 build-type: Simple
 cabal-version: >= 1.10
 
-tested-with: GHC==8.8.1, GHC==8.6.3, GHC==8.4.4, GHC==8.2.2
+tested-with: GHC == 8.10.1, GHC==8.8.1, GHC==8.6.3, GHC==8.4.4, GHC==8.2.2
 
 extra-source-files:
     readme.md
@@ -73,7 +73,7 @@ library
   build-depends: base >= 4.9
 
   -- untested
-  build-depends: base < 4.14
+  build-depends: base < 4.15
 
 executable aws-cloudfront-signed-cookies
   default-language: Haskell2010
@@ -82,7 +82,7 @@ executable aws-cloudfront-signed-cookies
 
   build-depends:
       aws-cloudfront-signed-cookies
-    , base >= 4.9 && < 4.14
+    , base >= 4.9 && < 4.15
 
 test-suite hedgehog
   default-language: Haskell2010
@@ -92,6 +92,6 @@ test-suite hedgehog
   ghc-options: -threaded
   build-depends:
       aws-cloudfront-signed-cookies
-    , base >= 4.9 && < 4.14
+    , base >= 4.9 && < 4.15
     , hedgehog
     , neat-interpolation
