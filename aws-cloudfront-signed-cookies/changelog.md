@@ -22,7 +22,7 @@
 
 - Support GHC 8.10
 
-## 0.2.0.8 - ?
+## 0.2.0.8 - 2021-06-10
 
 - Add proper version bounds for all dependencies
 - Support GHC 9.0
