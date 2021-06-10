@@ -1,4 +1,0 @@
-resolver: lts-15.2
-
-packages:
-  - aws-cloudfront-signed-cookies
