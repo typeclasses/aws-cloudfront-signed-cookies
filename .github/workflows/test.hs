@@ -6,7 +6,7 @@ main =
     ghc <- getEnv "ghc"
 
     let constraints = case ghc of
-            "8.2.2"  -> [ "aeson" .= "1.4.2.0"
+            "8.2.2"  -> [ "aeson" .= "1.4.0.0"
                         , "aeson-pretty" .= "0.8.0"
                         , "asn1-encoding" .= "0.9.5"
                         , "asn1-types" .= "0.3.2"
@@ -26,8 +26,7 @@ main =
                         , "unordered-containers" .= "0.2.10.0"
                         , "vector" .= "0.12.0.1"
                         ]
-            "8.4.4"  -> [ "aeson" .= "1.5.0.0"
-                        , "base" .= "4.11.*"
+            "8.4.4"  -> [ "base" .= "4.11.*"
                         , "base64-bytestring" .= "1.0.0.3"
                         , "cryptonite" .= "0.25"
                         , "hedgehog" .= "0.6.1"
@@ -46,7 +45,8 @@ main =
                         , "time" .= "1.9"
                         , "vector" .= "0.12.1.2"
                         ]
-            "8.8.1"  -> [ "base" .= "4.13.*"
+            "8.8.1"  -> [ "aeson" .= "1.5.0.0"
+                        , "base" .= "4.13.*"
                         , "base64-bytestring" .= "1.2.0.0"
                         , "cryptonite" .= "0.28"
                         , "hedgehog" .= "1.0.4"
