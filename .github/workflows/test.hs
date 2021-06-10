@@ -6,16 +6,20 @@ main =
     ghc <- getEnv "ghc"
 
     let constraints = case ghc of
-            "8.2.2"  -> [ "aeson" .= "1.5.0.0"
+            "8.2.2"  -> [ "aeson" .= "1.4.2.0"
+                        , "aeson-pretty" .= "0.8.0"
                         , "bytestring" .= "0.10.8.1"
-                        , "lens" .= "4.19"
-                        , "lens-aeson" .= "1.1"
+                        , "lens" .= "4.15.2"
+                        , "lens-aeson" .= "1.0.2"
                         , "pem" .= "0.2.4"
                         , "text" .= "1.2.3.0"
-                        , "time" .= "1.9.3"
+                        , "time" .= "1.8"
                         , "unordered-containers" .= "0.2.10.0"
                         ]
-            "8.4.4"  -> []
+            "8.4.4"  -> [ "aeson" .= "1.5.0.0"
+                        , "lens" .= "4.19"
+                        , "lens-aeson" .= "1.1"
+                        ]
             "8.6.3"  -> []
             "8.8.1"  -> []
             "8.10.1" -> [ "aeson" .= "1.5.6.0"
