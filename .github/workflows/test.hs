@@ -12,6 +12,7 @@ main =
                         , "cryptonite" .= "0.25"
                         , "lens" .= "4.15.2"
                         , "lens-aeson" .= "1.0.2"
+                        , "optparse-applicative" .= "0.14.1.0"
                         , "pem" .= "0.2.3"
                         , "text" .= "1.2.3.0"
                         , "time" .= "1.8"
@@ -23,6 +24,7 @@ main =
                         , "lens-aeson" .= "1.1"
                         ]
             "8.6.3"  -> [ "cryptonite" .= "0.27"
+                        , "optparse-applicative" .= "0.15.0.0"
                         ]
             "8.8.1"  -> [ "cryptonite" .= "0.28"
                         ]
