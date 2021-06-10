@@ -22,12 +22,14 @@ main =
                         , "text" .= "1.2.3.0"
                         , "time" .= "1.8"
                         , "unordered-containers" .= "0.2.10.0"
+                        , "vector" .= "0.12.0.1"
                         ]
             "8.4.4"  -> [ "aeson" .= "1.5.0.0"
                         , "base64-bytestring" .= "1.0.0.3"
                         , "cryptonite" .= "0.25"
                         , "lens" .= "4.19"
                         , "lens-aeson" .= "1.1"
+                        , "vector" .= "0.12.0.3"
                         ]
             "8.6.3"  -> [ "asn1-types" .= "0.3.3"
                         , "base64-bytestring" .= "1.1.0.0"
@@ -35,10 +37,12 @@ main =
                         , "cryptonite" .= "0.27"
                         , "neat-interpolation" .= "0.4"
                         , "optparse-applicative" .= "0.15.0.0"
+                        , "vector" .= "0.12.1.2"
                         ]
             "8.8.1"  -> [ "base64-bytestring" .= "1.2.0.0"
                         , "cryptonite" .= "0.28"
                         , "neat-interpolation" .= "0.5.1.1"
+                        , "vector" .= "0.12.2.0"
                         ]
             "8.10.1" -> [ "aeson" .= "1.5.6.0"
                         , "aeson-pretty" .= "0.8.8"
