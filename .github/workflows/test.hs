@@ -10,6 +10,7 @@ main =
                         , "aeson-pretty" .= "0.8.0"
                         , "asn1-encoding" .= "0.9.5"
                         , "asn1-types" .= "0.3.2"
+                        , "base64-bytestring" .= "1.0.0.2"
                         , "bytestring" .= "0.10.8.1"
                         , "cookie" .= "0.4.3"
                         , "cryptonite" .= "0.25"
@@ -23,17 +24,20 @@ main =
                         , "unordered-containers" .= "0.2.10.0"
                         ]
             "8.4.4"  -> [ "aeson" .= "1.5.0.0"
+                        , "base64-bytestring" .= "1.0.0.3"
                         , "cryptonite" .= "0.25"
                         , "lens" .= "4.19"
                         , "lens-aeson" .= "1.1"
                         ]
             "8.6.3"  -> [ "asn1-types" .= "0.3.3"
+                        , "base64-bytestring" .= "1.1.0.0"
                         , "cookie" .= "0.4.4"
                         , "cryptonite" .= "0.27"
                         , "neat-interpolation" .= "0.4"
                         , "optparse-applicative" .= "0.15.0.0"
                         ]
-            "8.8.1"  -> [ "cryptonite" .= "0.28"
+            "8.8.1"  -> [ "base64-bytestring" .= "1.2.0.0"
+                        , "cryptonite" .= "0.28"
                         , "neat-interpolation" .= "0.5.1.1"
                         ]
             "8.10.1" -> [ "aeson" .= "1.5.6.0"
