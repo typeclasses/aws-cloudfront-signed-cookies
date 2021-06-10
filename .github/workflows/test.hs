@@ -40,6 +40,7 @@ main =
                         , "cryptonite" .= "0.27"
                         , "neat-interpolation" .= "0.4"
                         , "optparse-applicative" .= "0.15.0.0"
+                        , "time" .= "1.9"
                         , "vector" .= "0.12.1.2"
                         ]
             "8.8.1"  -> [ "base" .= "4.13.*"
@@ -64,6 +65,7 @@ main =
                         , "optparse-applicative" .= "0.16.1.0"
                         , "pem" .= "0.2.4"
                         , "text" .= "1.2.4.1"
+                        , "time" .= "1.9.3"
                         , "unordered-containers" .= "0.2.14.0"
                         , "vector" .= "0.12.3.0"
                         ]
