@@ -1,7 +1,7 @@
 cabal-version: 2.2
 
 name: aws-cloudfront-signed-cookies
-version: 0.2.0.8
+version: 0.2.0.9
 
 synopsis: Generate signed cookies for AWS CloudFront
 category: Network, AWS, Cloud
