@@ -22,3 +22,7 @@
 
 - Support GHC 8.10
 
+## 0.2.0.8 - ?
+
+- Add proper version bounds for all dependencies
+
