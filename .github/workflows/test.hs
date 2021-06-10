@@ -73,6 +73,8 @@ main =
                         , "unordered-containers" .= "0.2.14.0"
                         , "vector" .= "0.12.3.0"
                         ]
+            "9.0.1"  -> [ "base" .= "4.15.*"
+                        ]
 
     callProcess "cabal" ("build" : "all" : constraints)
     callProcess "cabal" ("test" : "all" : "--enable-tests" : constraints)

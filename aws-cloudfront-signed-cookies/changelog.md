@@ -25,4 +25,4 @@
 ## 0.2.0.8 - ?
 
 - Add proper version bounds for all dependencies
-
+- Support GHC 9.0

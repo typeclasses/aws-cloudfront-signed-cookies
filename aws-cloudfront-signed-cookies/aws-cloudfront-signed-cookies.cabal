@@ -20,7 +20,13 @@ license-file: license.txt
 
 build-type: Simple
 
-tested-with: GHC == 8.10.1, GHC==8.8.1, GHC==8.6.3, GHC==8.4.4, GHC==8.2.2
+tested-with:
+    GHC == 9.0.1
+  , GHC == 8.10.1
+  , GHC == 8.8.1
+  , GHC == 8.6.3
+  , GHC == 8.4.4
+  , GHC == 8.2.2
 
 extra-source-files:
     readme.md
@@ -64,6 +70,7 @@ library
         || ^>= 4.12
         || ^>= 4.13
         || ^>= 4.14
+        || ^>= 4.15
     , base64-bytestring
            ^>= 1.0.0.2
         || ^>= 1.1
@@ -118,6 +125,7 @@ executable aws-cloudfront-signed-cookies
         || ^>= 4.12
         || ^>= 4.13
         || ^>= 4.14
+        || ^>= 4.15
 
 test-suite hedgehog
   default-language: Haskell2010
@@ -133,6 +141,7 @@ test-suite hedgehog
         || ^>= 4.12
         || ^>= 4.13
         || ^>= 4.14
+        || ^>= 4.15
     , hedgehog
            ^>= 0.6
         || ^>= 1.0
