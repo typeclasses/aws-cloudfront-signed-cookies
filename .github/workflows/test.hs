@@ -9,6 +9,7 @@ main =
             "8.2.2"  -> [ "aeson" .= "1.4.2.0"
                         , "aeson-pretty" .= "0.8.0"
                         , "bytestring" .= "0.10.8.1"
+                        , "cookie" .= "0.4.3"
                         , "cryptonite" .= "0.25"
                         , "lens" .= "4.15.2"
                         , "lens-aeson" .= "1.0.2"
@@ -23,7 +24,8 @@ main =
                         , "lens" .= "4.19"
                         , "lens-aeson" .= "1.1"
                         ]
-            "8.6.3"  -> [ "cryptonite" .= "0.27"
+            "8.6.3"  -> [ "cookie" .= "0.4.4"
+                        , "cryptonite" .= "0.27"
                         , "optparse-applicative" .= "0.15.0.0"
                         ]
             "8.8.1"  -> [ "cryptonite" .= "0.28"
