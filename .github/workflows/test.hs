@@ -13,6 +13,7 @@ main =
                         , "cryptonite" .= "0.25"
                         , "lens" .= "4.15.2"
                         , "lens-aeson" .= "1.0.2"
+                        , "neat-interpolation" .= "0.3.2"
                         , "optparse-applicative" .= "0.14.1.0"
                         , "pem" .= "0.2.3"
                         , "text" .= "1.2.3.0"
@@ -26,9 +27,11 @@ main =
                         ]
             "8.6.3"  -> [ "cookie" .= "0.4.4"
                         , "cryptonite" .= "0.27"
+                        , "neat-interpolation" .= "0.4"
                         , "optparse-applicative" .= "0.15.0.0"
                         ]
             "8.8.1"  -> [ "cryptonite" .= "0.28"
+                        , "neat-interpolation" .= "0.5.1.1"
                         ]
             "8.10.1" -> [ "aeson" .= "1.5.6.0"
                         , "aeson-pretty" .= "0.8.8"
