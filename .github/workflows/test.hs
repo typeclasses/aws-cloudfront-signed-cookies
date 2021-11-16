@@ -74,6 +74,7 @@ main =
                         , "vector" .= "0.12.3.0"
                         ]
             "9.0.1"  -> [ "base" .= "4.15.*"
+                        , "aeson" .= "2.0.0.0"
                         ]
 
     callProcess "cabal" ("build" : "all" : constraints)

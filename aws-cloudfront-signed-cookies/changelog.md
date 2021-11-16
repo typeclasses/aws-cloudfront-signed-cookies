@@ -26,3 +26,8 @@
 
 - Add proper version bounds for all dependencies
 - Support GHC 9.0
+
+## 0.2.0.9
+
+- Support Aeson 2.0
+- Remove unordered-containers dependency

@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, ScopedTypeVariables #-}
+{-# LANGUAGE OverloadedStrings, ScopedTypeVariables, TypeApplications #-}
 
 module Network.AWS.CloudFront.SignedCookies.Policy
   (
@@ -23,7 +23,9 @@ module Network.AWS.CloudFront.SignedCookies.Policy
 import Network.AWS.CloudFront.SignedCookies.Types
 
 -- aeson
-import qualified Data.Aeson as A
+import qualified Data.Aeson as A (Value, eitherDecode', encode, object)
+import qualified Data.Aeson.Types as A (Pair)
+import Data.Aeson ((.=), toJSON)
 
 -- base
 import Control.Monad ((>=>))
@@ -44,9 +46,6 @@ import qualified Data.Text.Encoding as Text
 -- time
 import Data.Time.Clock.POSIX (getPOSIXTime)
 
--- unordered-containers
-import qualified Data.HashMap.Strict as Map
-
 -- vector
 import qualified Data.Vector as Vec
 
@@ -65,44 +64,42 @@ policyJSON =
   LBS.toStrict . A.encode . policyValue
 
 policyValue :: Policy -> A.Value
-policyValue policy =
-  A.Object $ Map.singleton "Statement" $
-    A.Array $ Vec.singleton $
-      A.Object $ "Resource" .= resourceValue policy <>
-                 "Condition" .= conditionValue policy
+policyValue policy = A.object [ "Statement" .= statement ]
+  where
+    statement = toJSON @[A.Value]
+      [ A.object
+        [ "Resource" .= resourceValue policy
+        , "Condition" .= conditionValue policy
+        ]
+      ]
 
 resourceValue :: Policy -> A.Value
-resourceValue (Policy (Resource x) _ _ _) = A.String x
+resourceValue (Policy (Resource x) _ _ _) = toJSON @Text x
 
 conditionValue :: Policy -> A.Value
 conditionValue (Policy _ start end ip) =
-  A.Object $ startCondition <> endCondition <> ipCondition
+  A.object $ startCondition <> endCondition <> ipCondition
   where
 
-    startCondition :: A.Object =
+    startCondition :: [A.Pair] =
       case start of
-        StartImmediately -> mempty
-        StartTime x -> "DateGreaterThan" .= posixTimeValue x
+        StartImmediately -> []
+        StartTime x -> ["DateGreaterThan" .= posixTimeValue x]
 
-    endCondition :: A.Object =
+    endCondition :: [A.Pair] =
       case end of
-        EndTime x -> "DateLessThan" .= posixTimeValue x
+        EndTime x -> ["DateLessThan" .= posixTimeValue x]
 
-    ipCondition :: A.Object =
+    ipCondition :: [A.Pair] =
       case ip of
-        AnyIp -> mempty
-        IpAddress x -> "IpAddress" .= sourceIpValue x
+        AnyIp -> []
+        IpAddress x -> ["IpAddress" .= sourceIpValue x]
 
 posixTimeValue :: POSIXTime -> A.Value
-posixTimeValue =
-  A.Object . ("AWS:EpochTime" .=) . A.Number . fromInteger . round
+posixTimeValue x = A.object ["AWS:EpochTime" .= toJSON @Integer (round x) ]
 
 sourceIpValue :: Text -> A.Value
-sourceIpValue =
-  A.Object . ("AWS:SourceIp" .=) . A.String
-
-(.=) :: Text -> A.Value -> A.Object
-(.=) = Map.singleton
+sourceIpValue x = A.object ["AWS:SourceIp" .= toJSON @Text x]
 
 jsonTextPolicy :: Text -> Either String Policy
 jsonTextPolicy =
