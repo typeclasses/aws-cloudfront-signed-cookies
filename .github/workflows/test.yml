@@ -6,10 +6,13 @@ jobs:
 
   build:
     name: Test the package
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
         ghc:
           - '8.2.2'
           - '8.4.4'

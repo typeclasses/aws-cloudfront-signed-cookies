@@ -31,3 +31,4 @@
 
 - Support Aeson 2.0
 - Remove unordered-containers dependency
+- [Fix test suite on macos](https://github.com/typeclasses/aws-cloudfront-signed-cookies/issues/2)
