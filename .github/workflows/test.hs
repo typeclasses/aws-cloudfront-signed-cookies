@@ -75,6 +75,7 @@ main =
                         ]
             "9.0.1"  -> [ "base" .= "4.15.*"
                         , "aeson" .= "2.0.0.0"
+                        , "lens" .= "5.1"
                         ]
 
     callProcess "cabal" ("build" : "all" : constraints)

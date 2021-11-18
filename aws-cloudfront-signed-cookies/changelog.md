@@ -32,3 +32,7 @@
 - Support Aeson 2.0
 - Remove unordered-containers dependency
 - [Fix test suite on macos](https://github.com/typeclasses/aws-cloudfront-signed-cookies/issues/2)
+
+## 0.2.0.10 - 2021-11-17
+
+- Support lens 5.1
