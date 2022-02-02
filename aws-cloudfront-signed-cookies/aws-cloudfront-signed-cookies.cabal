@@ -29,6 +29,7 @@ source-repository head
 library
     default-language: Haskell2010
     hs-source-dirs: library
+    ghc-options: -Wall -fno-warn-unused-imports
 
     exposed-modules:
         Network.AWS.CloudFront.SignedCookies
@@ -66,6 +67,7 @@ executable aws-cloudfront-signed-cookies
     default-language: Haskell2010
     hs-source-dirs: executables
     main-is: aws-cloudfront-signed-cookies.hs
+    ghc-options: -Wall -fno-warn-unused-imports
 
     build-depends:
         aws-cloudfront-signed-cookies
@@ -77,6 +79,7 @@ test-suite hedgehog
     type: exitcode-stdio-1.0
     main-is: Main.hs
     ghc-options: -threaded
+    ghc-options: -Wall -fno-warn-unused-imports
 
     build-depends:
         aws-cloudfront-signed-cookies
