@@ -84,5 +84,5 @@ test-suite hedgehog
     build-depends:
         aws-cloudfront-signed-cookies
       , base ^>= 4.10 || ^>= 4.11 || ^>= 4.12 || ^>= 4.13 || ^>= 4.14 || ^>= 4.15
-      , hedgehog ^>= 0.6 || ^>= 1.0
+      , hedgehog ^>= 0.6 || ^>= 1.0 || ^>= 1.1
       , neat-interpolation ^>= 0.3.2 || ^>= 0.4 || ^>= 0.5
