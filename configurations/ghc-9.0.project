@@ -5,3 +5,4 @@ constraints:
   , aeson == 2.0.0.0
   , hedgehog == 1.1.*
   , lens == 5.1
+  , optparse-applicative == 0.17.*
