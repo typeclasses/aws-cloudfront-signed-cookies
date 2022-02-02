@@ -26,10 +26,15 @@ source-repository head
     type: git
     location: https://github.com/typeclasses/aws-cloudfront-signed-cookies
 
-library
+common base
     default-language: Haskell2010
-    hs-source-dirs: library
     ghc-options: -Wall -fno-warn-unused-imports
+    build-depends:
+        base ^>= 4.10 || ^>= 4.11 || ^>= 4.12 || ^>= 4.13 || ^>= 4.14 || ^>= 4.15
+
+library
+    import: base
+    hs-source-dirs: library
 
     exposed-modules:
         Network.AWS.CloudFront.SignedCookies
@@ -50,7 +55,6 @@ library
       , aeson-pretty ^>= 0.8
       , asn1-encoding ^>= 0.9.5
       , asn1-types ^>= 0.3.2
-      , base ^>= 4.10 || ^>= 4.11 || ^>= 4.12 || ^>= 4.13 || ^>= 4.14 || ^>= 4.15
       , base64-bytestring ^>= 1.0.0.2 || ^>= 1.1 || ^>= 1.2
       , bytestring ^>= 0.10.8.1 || ^>= 0.11
       , cookie ^>= 0.4.3
@@ -64,25 +68,19 @@ library
       , vector ^>= 0.12.0.1
 
 executable aws-cloudfront-signed-cookies
-    default-language: Haskell2010
+    import: base
     hs-source-dirs: executables
     main-is: aws-cloudfront-signed-cookies.hs
-    ghc-options: -Wall -fno-warn-unused-imports
-
-    build-depends:
-        aws-cloudfront-signed-cookies
-      , base ^>= 4.10 || ^>= 4.11 || ^>= 4.12 || ^>= 4.13 || ^>= 4.14 || ^>= 4.15
+    build-depends: aws-cloudfront-signed-cookies
 
 test-suite hedgehog
-    default-language: Haskell2010
+    import: base
     hs-source-dirs: test
     type: exitcode-stdio-1.0
     main-is: Main.hs
     ghc-options: -threaded
-    ghc-options: -Wall -fno-warn-unused-imports
 
     build-depends:
         aws-cloudfront-signed-cookies
-      , base ^>= 4.10 || ^>= 4.11 || ^>= 4.12 || ^>= 4.13 || ^>= 4.14 || ^>= 4.15
       , hedgehog ^>= 0.6 || ^>= 1.0 || ^>= 1.1
       , neat-interpolation ^>= 0.3.2 || ^>= 0.4 || ^>= 0.5
