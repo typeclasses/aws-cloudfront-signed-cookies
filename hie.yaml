@@ -1,0 +1,8 @@
+cradle:
+  cabal:
+    - path: "./aws-cloudfront-signed-cookies/library"
+      component: "lib:aws-cloudfront-signed-cookies"
+    - path: "./aws-cloudfront-signed-cookies/executables"
+      component: "exe:aws-cloudfront-signed-cookies"
+    - path: "./aws-cloudfront-signed-cookies/test"
+      component: "test:hedgehog"
