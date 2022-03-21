@@ -38,7 +38,7 @@ import qualified Data.ByteString.Lazy as LBS
 import Control.Lens ((&), (^.), (^?))
 
 -- lens-aeson
-import Data.Aeson.Lens (AsNumber (..), AsPrimitive (..), key, nth, _Array, _Object)
+import Data.Aeson.Lens (AsNumber (..), AsValue (..), key, nth, _Array, _Object)
 
 -- text
 import qualified Data.Text.Encoding as Text

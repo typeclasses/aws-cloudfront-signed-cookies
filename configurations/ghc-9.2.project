@@ -3,7 +3,6 @@ packages: aws-cloudfront-signed-cookies
 constraints:
     base == 4.16.*
   , aeson == 2.0.3.*
-  , aeson-pretty == 0.8.9
   , asn1-encoding == 0.9.6
   , asn1-types == 0.3.4
   , base64-bytestring == 1.2.1.*
@@ -12,8 +11,8 @@ constraints:
   , cryptonite == 0.30
   , hedgehog == 1.1.*
   , lens == 5.1
-  , lens-aeson == 1.1.3
   , neat-interpolation == 0.5.1.*
   , optparse-applicative == 0.17.*
   , pem == 0.2.4
+  , time == 1.11.*
   , vector == 0.12.3.*
