@@ -1,0 +1,60 @@
+# https://github.com/jaspervdj/stylish-haskell/blob/master/data/stylish-haskell.yaml
+
+steps:
+
+  - simple_align:
+      cases: false
+      top_level_patterns: false
+      records: false
+
+  - imports:
+      align: none
+      list_align: after_alias
+      long_list_align: inline
+      list_padding: 4
+      pad_module_names: false
+      separate_lists: true
+
+  - language_pragmas:
+      style: compact
+      align: false
+      remove_redundant: true
+
+  - trailing_whitespace: {}
+
+columns: 10000
+
+language_extensions:
+  - ApplicativeDo
+  - BlockArguments
+  - DefaultSignatures
+  - DeriveFunctor
+  - DeriveAnyClass
+  - DeriveDataTypeable
+  - DeriveFoldable
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable
+  - DerivingStrategies
+  - DerivingVia
+  - DuplicateRecordFields
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - InstanceSigs
+  - LambdaCase
+  - MultiParamTypeClasses
+  - NamedFieldPuns
+  - NumericUnderscores
+  - PackageImports
+  - PatternSynonyms
+  - QuasiQuotes
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TemplateHaskell
+  - TypeApplications
+  - TypeFamilies
+  - ViewPatterns
