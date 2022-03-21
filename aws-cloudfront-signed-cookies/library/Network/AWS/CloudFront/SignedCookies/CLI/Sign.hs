@@ -1,28 +1,17 @@
-{-# LANGUAGE OverloadedStrings, RecordWildCards #-}
-
 -- | Command-line interface for generating AWS CloudFront signed cookies.
 
 module Network.AWS.CloudFront.SignedCookies.CLI.Sign
   ( main, mainOpts, Opts (..), optsParser, mainParserInfo
   ) where
 
-import Network.AWS.CloudFront.SignedCookies
-import Network.AWS.CloudFront.SignedCookies.CLI.Internal
-
--- base
-import Data.Coerce (Coercible, coerce)
-import Data.Foldable (for_)
-import Data.Semigroup ((<>))
+import Network.AWS.CloudFront.SignedCookies (KeyPairId (..), Lifespan (..), PemFilePath (..), Resource (..), createSignedCookies, readPrivateKeyPemFile, renderCookiesText, simplePolicy)
+import Network.AWS.CloudFront.SignedCookies.CLI.Internal (days, text)
 
 -- optparse-applicative
 import qualified Options.Applicative as Opt
 
 -- text
-import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
-
--- time
-import Data.Time.Clock (nominalDay)
 
 -- | Entry point for the AWS CloudFront cookie-signing command-line interface.
 

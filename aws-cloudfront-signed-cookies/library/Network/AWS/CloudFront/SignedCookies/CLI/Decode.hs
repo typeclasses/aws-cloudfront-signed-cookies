@@ -1,14 +1,12 @@
-{-# LANGUAGE OverloadedStrings, RecordWildCards, ScopedTypeVariables, TypeApplications #-}
-
 -- | Command-line interface for decoding AWS CloudFront policy cookies.
 
 module Network.AWS.CloudFront.SignedCookies.CLI.Decode
   ( main, mainOpts, Opts (..), optsParser, mainParserInfo
   ) where
 
-import Network.AWS.CloudFront.SignedCookies
-import Network.AWS.CloudFront.SignedCookies.CLI.Internal
-import Network.AWS.CloudFront.SignedCookies.Encoding
+import Network.AWS.CloudFront.SignedCookies.CLI.Internal (text)
+import Network.AWS.CloudFront.SignedCookies.Encoding (base64Decode)
+import Network.AWS.CloudFront.SignedCookies.Types (PolicyCookie (..), Text)
 
 -- aeson
 import qualified Data.Aeson as A
@@ -17,9 +15,7 @@ import qualified Data.Aeson as A
 import Data.Aeson.Encode.Pretty (encodePrettyToTextBuilder)
 
 -- base
-import Data.Coerce (Coercible, coerce)
-import Data.Foldable (for_)
-import Data.Semigroup ((<>))
+import Data.Coerce (coerce)
 
 -- bytestring
 import qualified Data.ByteString as BS
@@ -29,14 +25,9 @@ import qualified Data.ByteString.Lazy as LBS
 import qualified Options.Applicative as Opt
 
 -- text
-import qualified Data.Text as Text
-import qualified Data.Text.Encoding as Text
 import qualified Data.Text.Lazy as LText
+import Data.Text.Lazy.Builder as Text (toLazyText)
 import qualified Data.Text.Lazy.IO as LText
-import Data.Text.Lazy.Builder as Text
-
--- time
-import Data.Time.Clock (nominalDay)
 
 -- | Entry point for the AWS CloudFront cookie decoding command-line interface.
 

@@ -1,11 +1,9 @@
-{-# LANGUAGE LambdaCase #-}
-
 module Network.AWS.CloudFront.SignedCookies.Encoding
   ( base64Encode
   , base64Decode
   ) where
 
-import Network.AWS.CloudFront.SignedCookies.Types
+import Network.AWS.CloudFront.SignedCookies.Types (ByteString, Text)
 
 -- base64-bytestring
 import qualified Data.ByteString.Base64 as Base64

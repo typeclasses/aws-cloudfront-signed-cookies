@@ -1,23 +1,19 @@
-{-# LANGUAGE OverloadedStrings, QuasiQuotes, TemplateHaskell #-}
-
 module Main (main) where
 
-import Network.AWS.CloudFront.SignedCookies
+import Network.AWS.CloudFront.SignedCookies (EndTime (EndTime), IpAddress (IpAddress), Policy (Policy), Resource (Resource), StartTime (StartImmediately, StartTime), jsonTextPolicy)
 
 -- base
 import Control.Monad (unless)
 import Data.Either (isLeft)
 import Data.Foldable (for_)
 import qualified System.Exit as Exit
-import qualified System.IO   as IO
+import qualified System.IO as IO
 
 -- hedgehog
-import           Hedgehog
-import qualified Hedgehog.Gen as Gen
-import qualified Hedgehog.Range as Range
+import Hedgehog (Property, assert, checkParallel, discover, property, withTests, (===))
 
 -- neat-interpolation
-import NeatInterpolation
+import NeatInterpolation (text)
 
 main :: IO ()
 main = do

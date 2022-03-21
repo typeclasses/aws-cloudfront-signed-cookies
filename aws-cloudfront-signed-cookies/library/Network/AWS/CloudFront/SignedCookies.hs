@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings, ScopedTypeVariables, TypeApplications #-}
-
 -- |
 -- Example usage:
 --
@@ -95,7 +93,6 @@ import qualified Data.Aeson as A
 -- base
 import Control.Monad ((>=>))
 import Data.Coerce (coerce)
-import Data.Semigroup ((<>))
 
 -- bytestring
 import qualified Data.ByteString.Lazy as LBS
@@ -104,8 +101,8 @@ import qualified Data.ByteString.Lazy as LBS
 import qualified Data.Text as Text
 
 -- time
-import Data.Time.Clock.POSIX (getPOSIXTime)
 import Data.Time.Clock (nominalDay)
+import Data.Time.Clock.POSIX (getPOSIXTime)
 
 createSignedCookies
   :: KeyPairId

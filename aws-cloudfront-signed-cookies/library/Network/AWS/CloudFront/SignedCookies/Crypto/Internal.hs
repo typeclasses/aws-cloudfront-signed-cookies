@@ -1,5 +1,3 @@
-{-# LANGUAGE LambdaCase, RecordWildCards, TypeApplications #-}
-
 {-
 
 This module is based on a part of snaplet-saml. If my hs-certificate PR gets merged, then we probably ought to remove this and use hs-certificate instead.
@@ -14,13 +12,7 @@ module Network.AWS.CloudFront.SignedCookies.Crypto.Internal
   ( rsaPrivateKeyFromASN1
   ) where
 
-import Data.Bifunctor (first)
-import Data.Semigroup ((<>))
-
-import Data.ASN1.Types
-import Data.ASN1.Encoding
-import Data.ASN1.BinaryEncoding
-import Data.ASN1.BitArray
+import Data.ASN1.Types (ASN1 (End, IntVal, Start), ASN1ConstructionType (Sequence))
 
 import qualified Crypto.PubKey.RSA as RSA
 
@@ -43,7 +35,7 @@ rsaPrivateKeyFromASN1 =
 
       case version of
         0 -> Right (buildKey Params{..})
-        v -> Left $ "rsaPrivateKeyFromASN1: unexpected version " <>
+        _ -> Left $ "rsaPrivateKeyFromASN1: unexpected version " <>
                     show @Integer version
 
     _ -> Left "rsaPrivateKeyFromASN1: unexpected format"

@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings, ScopedTypeVariables, TypeApplications #-}
-
 module Network.AWS.CloudFront.SignedCookies.Policy
   (
   -- * Defining a policy
@@ -20,25 +18,24 @@ module Network.AWS.CloudFront.SignedCookies.Policy
 
   ) where
 
-import Network.AWS.CloudFront.SignedCookies.Types
+import Network.AWS.CloudFront.SignedCookies.Types (ByteString, EndTime (..), IpAddress (..), Lifespan (..), POSIXTime, Policy (..), Resource (..), StartTime (..), Text)
 
 -- aeson
+import Data.Aeson (toJSON, (.=))
 import qualified Data.Aeson as A (Value, eitherDecode', encode, object)
 import qualified Data.Aeson.Types as A (Pair)
-import Data.Aeson ((.=), toJSON)
 
 -- base
 import Control.Monad ((>=>))
-import Data.Semigroup ((<>))
 
 -- bytestring
 import qualified Data.ByteString.Lazy as LBS
 
 -- lens
-import Control.Lens ((&), (^.), (^?))
+import Control.Lens ((^?))
 
 -- lens-aeson
-import Data.Aeson.Lens (AsNumber (..), AsValue (..), key, nth, _Array, _Object)
+import Data.Aeson.Lens (AsNumber (..), AsValue (..), key, nth)
 
 -- text
 import qualified Data.Text.Encoding as Text
@@ -47,7 +44,6 @@ import qualified Data.Text.Encoding as Text
 import Data.Time.Clock.POSIX (getPOSIXTime)
 
 -- vector
-import qualified Data.Vector as Vec
 
 {- |
 

@@ -1,5 +1,3 @@
-{-# LANGUAGE FlexibleContexts, OverloadedStrings, RecordWildCards #-}
-
 -- | Command-line interface for generating AWS CloudFront signed cookies.
 --
 -- This program is the aggregation of these subcommands:
@@ -11,14 +9,11 @@ module Network.AWS.CloudFront.SignedCookies.CLI
   ( main
   ) where
 
-import Network.AWS.CloudFront.SignedCookies.CLI.Internal
-
 import qualified Network.AWS.CloudFront.SignedCookies.CLI.Decode as Decode
-import qualified Network.AWS.CloudFront.SignedCookies.CLI.Sign   as Sign
+import qualified Network.AWS.CloudFront.SignedCookies.CLI.Sign as Sign
 
 -- base
 import Control.Monad (join)
-import Data.Semigroup ((<>))
 
 -- optparse-applicative
 import qualified Options.Applicative as Opt

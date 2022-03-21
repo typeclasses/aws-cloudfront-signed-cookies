@@ -1,5 +1,3 @@
-{-# LANGUAGE ScopedTypeVariables, TypeApplications #-}
-
 module Network.AWS.CloudFront.SignedCookies.Crypto
   (
   -- * Reading the private key
@@ -14,25 +12,22 @@ module Network.AWS.CloudFront.SignedCookies.Crypto
 
   ) where
 
-import Network.AWS.CloudFront.SignedCookies.Crypto.Internal
-import Network.AWS.CloudFront.SignedCookies.Types
+import Network.AWS.CloudFront.SignedCookies.Crypto.Internal (rsaPrivateKeyFromASN1)
+import Network.AWS.CloudFront.SignedCookies.Types (ByteString, PemFilePath (..), PrivateKey)
 
 -- asn1-encoding
 import Data.ASN1.BinaryEncoding (DER (DER))
 import Data.ASN1.Encoding (decodeASN1')
-import Data.ASN1.Error (ASN1Error)
 
 -- asn1-types
 import Data.ASN1.Types (ASN1)
 
 -- bytestring
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LBS
 
 -- cryptonite
-import Crypto.PubKey.RSA (PrivateKey)
-import qualified Crypto.PubKey.RSA.PKCS15 as RSA
 import Crypto.Hash.Algorithms (SHA1 (SHA1))
+import qualified Crypto.PubKey.RSA.PKCS15 as RSA
 
 -- pem
 import qualified Data.PEM as PEM

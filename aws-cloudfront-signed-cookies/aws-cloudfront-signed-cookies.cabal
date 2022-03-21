@@ -28,7 +28,14 @@ source-repository head
 
 common base
     default-language: Haskell2010
-    ghc-options: -Wall -fno-warn-unused-imports
+    ghc-options: -Wall
+    default-extensions:
+        FlexibleContexts
+        LambdaCase
+        OverloadedStrings
+        RecordWildCards
+        ScopedTypeVariables
+        TypeApplications
     build-depends:
         base ^>= 4.14 || ^>= 4.15 || ^>= 4.16
 
@@ -79,6 +86,9 @@ test-suite hedgehog
     type: exitcode-stdio-1.0
     main-is: Main.hs
     ghc-options: -threaded
+    default-extensions:
+        QuasiQuotes
+        TemplateHaskell
 
     build-depends:
         aws-cloudfront-signed-cookies

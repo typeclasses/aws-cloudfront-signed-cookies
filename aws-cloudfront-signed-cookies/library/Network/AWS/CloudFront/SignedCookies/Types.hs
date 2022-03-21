@@ -32,7 +32,7 @@ import Data.ByteString (ByteString)
 import Web.Cookie (CookiesText, SetCookie)
 
 -- cryptonite
-import Crypto.PubKey.RSA (PrivateKey (..), PublicKey (..))
+import Crypto.PubKey.RSA (PrivateKey (..))
 
 -- text
 import Data.Text (Text)
