@@ -1,7 +1,8 @@
 packages: aws-cloudfront-signed-cookies
 
 constraints:
-    base == 4.15.*
+    aeson == 2.0.3.*
+  , base == 4.15.*
   , hedgehog == 1.1.*
   , lens == 5.1
   , optparse-applicative == 0.17.*

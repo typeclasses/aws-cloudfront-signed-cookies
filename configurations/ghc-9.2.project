@@ -2,7 +2,7 @@ packages: aws-cloudfront-signed-cookies
 
 constraints:
     base == 4.16.*
-  , aeson == 2.0.3.*
+  , aeson == 2.1.*
   , asn1-encoding == 0.9.6
   , asn1-types == 0.3.4
   , base64-bytestring == 1.2.1.*
