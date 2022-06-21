@@ -10,9 +10,9 @@ constraints:
   , cookie == 0.4.5
   , cryptonite == 0.30
   , hedgehog == 1.1.*
-  , lens == 5.1
+  , lens == 5.1.1
   , neat-interpolation == 0.5.1.*
   , optparse-applicative == 0.17.*
   , pem == 0.2.4
   , time == 1.11.*
-  , vector == 0.12.3.*
+  , vector == 0.13.*
