@@ -11,7 +11,7 @@ constraints:
   , cookie == 0.4.5
   , cryptonite == 0.29
   , hedgehog == 1.0.5
-  , lens == 5.0.1
+  , lens == 5.0.*
   , lens-aeson == 1.2
   , neat-interpolation == 0.5.1.2
   , optparse-applicative == 0.16.1.0
