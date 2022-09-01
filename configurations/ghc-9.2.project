@@ -9,7 +9,7 @@ constraints:
   , bytestring == 0.11.3.*
   , cookie == 0.4.5
   , cryptonite == 0.30
-  , hedgehog == 1.1.*
+  , hedgehog == 1.2.*
   , lens == 5.2.*
   , neat-interpolation == 0.5.1.*
   , optparse-applicative == 0.17.*
