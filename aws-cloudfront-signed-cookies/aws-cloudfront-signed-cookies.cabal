@@ -56,7 +56,7 @@ library
         Network.AWS.CloudFront.SignedCookies.CLI.Internal
         Network.AWS.CloudFront.SignedCookies.Crypto.Internal
     build-depends:
-      , aeson ^>= 2.0.3 || ^>= 2.1
+      , aeson ^>= 2.0.3 || ^>= 2.1 || ^>= 2.2
       , aeson-pretty ^>= 0.8.9
       , asn1-encoding ^>= 0.9.6
       , asn1-types ^>= 0.3.4
