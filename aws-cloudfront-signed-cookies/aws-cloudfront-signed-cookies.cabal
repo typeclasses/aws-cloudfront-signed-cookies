@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name: aws-cloudfront-signed-cookies
-version: 0.2.0.12
+version: 0.2.0.13
 
 synopsis: Generate signed cookies for AWS CloudFront
 category: Network, AWS, Cloud
@@ -38,7 +38,7 @@ common base
         ScopedTypeVariables
         TypeApplications
     build-depends:
-      , base ^>= 4.15 || ^>= 4.16 || ^>= 4.17 || ^>= 4.18
+      , base ^>= 4.18 || ^>= 4.19
 
 library
     import: base
@@ -56,19 +56,19 @@ library
         Network.AWS.CloudFront.SignedCookies.CLI.Internal
         Network.AWS.CloudFront.SignedCookies.Crypto.Internal
     build-depends:
-      , aeson ^>= 2.0.3 || ^>= 2.1 || ^>= 2.2
+      , aeson ^>= 2.1 || ^>= 2.2
       , aeson-pretty ^>= 0.8.9
       , asn1-encoding ^>= 0.9.6
       , asn1-types ^>= 0.3.4
       , base64-bytestring ^>= 1.2.1
-      , bytestring ^>= 0.10.12 || ^>= 0.11
+      , bytestring ^>= 0.11 || ^>= 0.12
       , cookie ^>= 0.4.5
-      , cryptonite ^>= 0.29 || ^>= 0.30
+      , crypton ^>= 0.34 || ^>= 1.0
       , lens ^>= 5.0.1 || ^>= 5.1 || ^>= 5.2
       , lens-aeson ^>= 1.2
       , optparse-applicative ^>= 0.16.1 || ^>= 0.17 || ^>= 0.18
       , pem ^>= 0.2.4
-      , text ^>= 1.2.4 || ^>= 2.0
+      , text ^>= 2.0 || ^>= 2.1
       , time ^>= 1.9.3 || ^>= 1.10 || ^>= 1.11 || ^>= 1.12
       , vector ^>= 0.12.3 || ^>= 0.13
 
@@ -89,5 +89,5 @@ test-suite hedgehog
         TemplateHaskell
     build-depends:
       , aws-cloudfront-signed-cookies
-      , hedgehog ^>= 1.0.5 || ^>= 1.1 || ^>= 1.2
+      , hedgehog ^>= 1.4
       , neat-interpolation ^>= 0.5.1

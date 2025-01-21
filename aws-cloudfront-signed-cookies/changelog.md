@@ -1,3 +1,9 @@
+### 0.2.0.13 - 2025-01-20
+
+Version bumps
+
+Switch dependency from `cryptonite` to `crypton`
+
 ### 0.2.0.12 - 2023-01-02
 
 Support GHC 9.4
